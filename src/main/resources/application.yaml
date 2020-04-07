@@ -1,0 +1,14 @@
+application:
+  score-to-pass: 3
+
+  questions-file:
+    name-prefix: questions
+    extension: csv
+    default-name: questions.csv
+
+  locale:
+
+spring:
+  messages:
+    basename: bundle
+    fallback-to-system-locale: false
