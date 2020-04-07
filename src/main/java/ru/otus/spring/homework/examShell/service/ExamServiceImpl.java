@@ -12,14 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class ExamServiceImpl implements ExamService {
 
-    private final Properties yamlProperties;
+    private final Properties properties;
     private final QuestionsDao questionsDao;
     private final InputOutputService inputOutputService;
 
-    public ExamServiceImpl(Properties yamlProperties,
+    public ExamServiceImpl(Properties properties,
                            QuestionsDao questionsDao,
                            InputOutputService inputOutputService) {
-        this.yamlProperties = yamlProperties;
+        this.properties = properties;
         this.questionsDao = questionsDao;
         this.inputOutputService = inputOutputService;
     }
@@ -30,7 +30,7 @@ public class ExamServiceImpl implements ExamService {
         int score = takeExam(questionsDao.getQuestions());
 
         student.setScore(score);
-        student.setExamPassed(score >= yamlProperties.getScoreToPass());
+        student.setExamPassed(score >= properties.getScoreToPass());
 
         if (student.isExamPassed()) {
             inputOutputService.printMessage("exam.passed", student.getName(), score);
